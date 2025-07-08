@@ -15,4 +15,4 @@
 
 4. Add songs in the folder
 
-5. Add the folde in the songs folder
+5. Add the folder in the songs folder
