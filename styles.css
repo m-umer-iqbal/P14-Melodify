@@ -1,0 +1,544 @@
+:root {
+    --dark-gray: #1c1c1c;
+    --light-gray: #cccccc;
+    --text-gray: #686868;
+}
+
+* {
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.3s;
+}
+
+body {
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    padding: 8px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.color-invert {
+    filter: invert(1);
+}
+
+.color-invert50 {
+    filter: invert(50%);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Works in Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #535353;
+    border-radius: 10px;
+    border: 3px solid #121212;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3;
+}
+
+/* Left Section CSS */
+.left-main {
+    width: calc(25vw - 12px);
+    height: calc(100vh - 16px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-gray);
+    margin-right: 0.25rem;
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.melodify-logo {
+    height: 4rem;
+    width: 4rem;
+    padding: 0.75rem;
+}
+
+.left-playlist-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playlist-heading {
+    margin-left: 0.5rem;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem;
+}
+
+.cross-icon {
+    width: 2rem;
+    height: 1.5rem;
+    padding: 0 0.25rem;
+    display: none;
+}
+
+.song-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0rem 0.5rem 0.5rem 1rem;
+}
+
+.song-list ul li {
+    list-style: none;
+    padding: 0.25rem;
+    color: var(--light-gray);
+    border: 0.0625rem solid var(--light-gray);
+    border-radius: 0.5rem;
+    margin: 0.1rem 0rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.song-list ul li:hover {
+    color: white;
+    border-color: white;
+}
+
+.music-icon,
+.play-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.song-list ul li p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-all;
+}
+
+.icon-song-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.footer {
+    padding: 0.5rem;
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Right Section CSS */
+.right-main {
+    width: calc(75vw - 12px);
+    height: calc(100vh - 16px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-gray);
+    margin-left: 0.25rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.left-section2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 1rem 0;
+    display: none;
+}
+
+.right-main-top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.hamburger-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    display: none;
+}
+
+.album-heading {
+    color: white;
+    font-weight: 600;
+}
+
+.card-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 1.25rem 0;
+    gap: 1.25rem;
+    height: 75vh;
+    width: 100%;
+}
+
+.card {
+    width: 10vw;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    position: relative;
+    background-color: black;
+}
+
+.card:hover {
+    background-color: #303030;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.card h3 {
+    color: var(--light-gray);
+    font-size: 1rem;
+    padding: 0.25rem 0;
+}
+
+.card p {
+    color: var(--text-gray);
+    font-size: 0.75rem;
+}
+
+.circle-box {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 5.5rem;
+    right: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover .circle-box {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+svg {
+    width: 1rem;
+    height: 1rem;
+    color: black;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.main-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border-radius: 0.5rem;
+    color: black;
+    gap: 1.5rem;
+}
+
+.song-info {
+    width: 15rem;
+    padding: 0 0.75rem;
+}
+
+.buttons {
+    gap: 1rem;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.timevol {
+    display: flex;
+    align-items: center;
+}
+
+.song-duration {
+    width: 8rem;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.volume-img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.volume-range {
+    width: 70%;
+}
+
+.seekbar {
+    width: 99%;
+    border: 0.25rem solid var(--text-gray);
+    position: relative;
+    border-radius: 0.5rem;
+}
+
+.circle {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    position: absolute;
+    bottom: -0.4rem;
+    left: -0.125rem;
+    transition: left 0.5s;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 1024px) {
+    .left-main {
+        left: 0;
+    }
+
+    .melodify-logo {
+        height: 3.5rem;
+        width: 3.5rem;
+    }
+
+    .melodify-heading {
+        font-size: 1.5rem;
+    }
+
+    .song-list {
+        height: 85%;
+    }
+
+    .card-container {
+        height: 81vh;
+    }
+
+    .card {
+        width: 11vw;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+
+    .card p {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .left-main {
+        width: 30%;
+        left: 0;
+    }
+
+    .song-list ul li p {
+        font-size: 0.75rem;
+    }
+
+    .right-main {
+        width: 70%;
+    }
+
+    .card {
+        width: 11.5vw;
+    }
+
+    .card h3 {
+        font-size: 0.75rem;
+    }
+
+    .card p {
+        font-size: 0.5rem;
+    }
+
+    .song-info {
+        font-size: 0.75rem;
+        padding: 0 0.35rem;
+        width: 10rem;
+    }
+
+    .song-duration {
+        font-size: 0.75rem;
+        padding: 0 0.35rem;
+        width: 7.5rem;
+    }
+
+    .buttons {
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    .buttons img {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        overflow: hidden;
+    }
+
+    .left-main {
+        overflow-y: auto;
+        height: 100vh;
+        width: 80%;
+        position: absolute;
+        left: -100%;
+        transition: all 0.3s;
+        z-index: 5;
+    }
+
+    .song-list {
+        height: 80%;
+    }
+
+    .right-main {
+        height: 100vh;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .cross-icon,
+    .hamburger-icon {
+        display: inline;
+    }
+
+    .left-section2 {
+        display: flex;
+    }
+
+    .card-container {
+        gap: 0.75rem;
+        height: 75vh;
+    }
+
+    .card {
+        width: 23.5vw;
+    }
+
+    .card h3 {
+        font-size: 0.75rem;
+    }
+
+    .card p {
+        font-size: 0.6rem;
+    }
+
+    .controls {
+        z-index: 1;
+    }
+
+    .main-controls {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0.5rem;
+    }
+
+    .song-info {
+        font-size: 1rem;
+        width: auto;
+    }
+
+    .timevol {
+        flex-direction: column;
+    }
+
+    .song-duration {
+        font-size: 1rem;
+        width: auto;
+    }
+
+    .buttons {
+        gap: 0.5rem;
+        padding: 0;
+    }
+
+    .buttons img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 392px) {
+    .card {
+        width: 34vw;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+
+    .card p {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 324px) {
+    .card {
+        width: 69vw;
+    }
+}
