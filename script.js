@@ -20,7 +20,6 @@ function formatSecondsToMMSS(seconds) {
 }
 
 //Getting songs from the songs folder
-//Getting songs from the songs folder
 async function getSongs(folder) {
     const response = await fetch("songs/data.json");
     const data = await response.json();
@@ -271,34 +270,17 @@ function cardClicked() {
 
 // Display all the albums on the page
 async function displayAlbums() {
-    const songsFolderURL = `http://127.0.0.1:5500/songs/`;
-
-    let response = await fetch(songsFolderURL);
-    let result = await response.text();
-
-    let div = document.createElement("div");
-    div.innerHTML = result;
-
-    let anchors = div.getElementsByTagName("a");
-    let cardContainer = document.querySelector(".card-container");
+    const response = await fetch("songs/data.json");
+    const data = await response.json();
+    const cardContainer = document.querySelector(".card-container");
 
     cardContainer.innerHTML = ""; // Clear previous cards
 
-    for (let i = 0; i < anchors.length; i++) {
-        let a = anchors[i];
-
-        // Skip parent directory links or non-folder links
-        if (!a.href.includes("/songs/")) continue;
-
-        let folderName = a.href.split("/songs/")[1].replace("/", "");
-        if (!folderName) continue;
-
+    for (const folderName in data) {
         try {
-            // Fetch metadata from info.json
-            let infoRes = await fetch(`${songsFolderURL}${folderName}/info.json`);
-            let info = await infoRes.json();
+            const infoRes = await fetch(`songs/${folderName}/info.json`);
+            const info = await infoRes.json();
 
-            // Create card HTML
             cardContainer.innerHTML += `
                 <div data-folder="${folderName}" class="card cursor-pointer">
                     <img src="songs/${folderName}/cover.png" alt="card-img">
@@ -317,7 +299,7 @@ async function displayAlbums() {
         }
     }
 
-    // Rebind event listeners after cards are rendered
+    // Rebind card click events
     cardClicked();
 }
 
@@ -361,3 +343,4 @@ async function main() {
 
 
 document.addEventListener("DOMContentLoaded", main);
+
