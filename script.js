@@ -20,34 +20,22 @@ function formatSecondsToMMSS(seconds) {
 }
 
 //Getting songs from the songs folder
+//Getting songs from the songs folder
 async function getSongs(folder) {
-    currFolder = folder;
-    const songsFolderURL = `http://127.0.0.1:5500/songs/${folder}/`;
+    const response = await fetch("songs/data.json");
+    const data = await response.json();
 
-    let response = await fetch(songsFolderURL);
-    let result = await response.text();
-
-    let div = document.createElement("div");
-    div.innerHTML = result;
-
-    let as = div.getElementsByTagName("a");
-    const songs = [];
-    const songsLinks = [];
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            songsLinks.push(element.href);
-            songs.push(element.href.split(`/${folder}/`)[1].replaceAll("%20", " "));
-        }
+    if (!data[folder]) {
+        console.error(`No data found for folder: ${folder}`);
+        return { 0: [], 1: [] };
     }
 
-    const obj = {
-        0: songs,
-        1: songsLinks
-    }
+    const songs = data[folder].songs;
+    const songsLinks = songs.map(song => `songs/${folder}/${song}`);
 
-    return obj;
+    return { 0: songs, 1: songsLinks };
 }
+
 
 // Displaying all songs in the side bar
 async function displayingSongsInSidebar() {
@@ -370,5 +358,6 @@ async function main() {
     });
 
 }
+
 
 document.addEventListener("DOMContentLoaded", main);
