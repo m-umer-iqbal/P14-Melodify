@@ -38,9 +38,11 @@ async function getSongs(folder) {
 
 // Displaying all songs in the side bar
 async function displayingSongsInSidebar() {
-    songsInfo = await getSongs("Eminem"); //Getting songs from the songs folder
+    const response = await fetch("songs/data.json");
+    const data = await response.json();
+    const firstArtist = Object.keys(data)[0]; // First folder from data.json
 
-    //A default song is setting at the start
+    songsInfo = await getSongs(firstArtist);
     playMusic(songsInfo[1][0], true);
 
     const songs = songsInfo[0];
@@ -75,17 +77,9 @@ function playMusic(track, pause = false) {
         playPauseBtn.src = "images/play-button.svg";
     }
 
-    // reliable song name extraction without using currFolder
-    let parts = track.replaceAll("%20", " ").split("/songs/");
-    let songInfoText = "Unknown Song";
+let songInfoText = decodeURIComponent(track.split("/").pop().replace(".mp3", ""));
+document.querySelector(".song-info").textContent = songInfoText;
 
-    if (parts.length > 1) {
-        let folderAndFile = parts[1]; // e.g. "sidhu moosewala/Brown Shortie.mp3"
-        let fileName = folderAndFile.split("/")[1]; // "Brown Shortie.mp3"
-        songInfoText = fileName.split(".")[0]; // "Brown Shortie"
-    }
-
-    document.querySelector(".song-info").innerHTML = songInfoText;
 }
 
 //Adding event listner on the songs in the side bar
@@ -240,20 +234,25 @@ function cardClicked() {
             // Update currFolder before anything else
             currFolder = folder;
 
-            // Clear old song list
-            let ul = document.querySelector(".song-list ul");
-            ul.innerHTML = "";
+            // Clear old song list safely
+const ul = document.querySelector(".song-list ul");
+if (!ul) {
+    console.warn("No .song-list <ul> found in DOM");
+    return;
+}
+ul.innerHTML = "";
 
-            // Add new songs to sidebar
-            songsInfo[0].forEach(songName => {
-                ul.innerHTML += `<li class="cursor-pointer">
-                    <div class="icon-song-name">
-                        <img class="music-icon color-invert" src="images/musical-note.png" alt="music-icon">
-                        <div><p>${songName}</p></div>
-                    </div>
-                    <img class="play-icon color-invert cursor-pointer" src="images/play-button.svg" alt="play-button">
-                </li>`;
-            });
+// Add new songs to sidebar
+songsInfo[0].forEach(songName => {
+    ul.innerHTML += `<li class="cursor-pointer">
+        <div class="icon-song-name">
+            <img class="music-icon color-invert" src="images/musical-note.png" alt="music-icon">
+            <div><p>${songName}</p></div>
+        </div>
+        <img class="play-icon color-invert cursor-pointer" src="images/play-button.svg" alt="play-button">
+    </li>`;
+});
+
 
             // Auto-play the first song
             playMusic(songsInfo[1][0]); // autoplay
@@ -310,7 +309,6 @@ async function main() {
     hamburgerAndCrossBtnFunctionality();
     previousAndNextBtnFunctionality();
     volumeBtnFunctionality();
-    cardClicked(); // Calling this to enable card-based loading
     displayAlbums();
 
     currentSong.addEventListener("ended", () => {
@@ -343,4 +341,5 @@ async function main() {
 
 
 document.addEventListener("DOMContentLoaded", main);
+
 
