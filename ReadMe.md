@@ -55,7 +55,8 @@ Each artist folder must include an info.json file with:
 Only a few sample songs are included (GitHub 100MB limit).
 You can add unlimited songs locally following the structure above.
 
-##💡 Tech Stack
+## 💡 Tech Stack
 - HTML5
 - CSS3
 - JavaScript (ES6)
+
