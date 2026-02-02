@@ -3,6 +3,10 @@
 **Melodify** is a Spotify-inspired **music streaming web app** built using **HTML, CSS, and JavaScript**.  
 It features a clean UI, smooth animations, and a **fully responsive design** for all devices.
 
+<img width="1919" height="891" alt="image" src="https://github.com/user-attachments/assets/e335942b-61a9-43ca-94a2-65a9f5f95adc" />
+<img width="509" height="903" alt="image" src="https://github.com/user-attachments/assets/80878aea-d46e-4e04-939c-13403290062f" />
+<img width="477" height="900" alt="image" src="https://github.com/user-attachments/assets/dd84fb4e-09b5-4ec2-9707-0de49a4ae47b" />
+
 ---
 
 ## 🚀 Features
@@ -59,4 +63,5 @@ You can add unlimited songs locally following the structure above.
 - HTML5
 - CSS3
 - JavaScript (ES6)
+
 
